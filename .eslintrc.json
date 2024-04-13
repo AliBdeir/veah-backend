@@ -1,22 +1,22 @@
 {
-  "root": true,
-  "ignorePatterns": [],
-  "overrides": [
-    {
-      "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["tsconfig.json"],
-        "createDefaultProgram": true
-      },
-      "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
-      "rules": {
-        "prettier/prettier": [
-          "error",
-          {
-            "endOfLine": "auto"
-          }
-        ]
-      }
-    }
-  ]
+    "root": true,
+    "ignorePatterns": [],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json"],
+                "createDefaultProgram": true
+            },
+            "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+            "rules": {
+                "prettier/prettier": [
+                    "error",
+                    {
+                        "endOfLine": "auto"
+                    }
+                ]
+            }
+        }
+    ]
 }
