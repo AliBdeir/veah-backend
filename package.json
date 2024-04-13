@@ -14,17 +14,20 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@azure/storage-blob": "^12.17.0",
         "axios": "^1.6.8",
         "dotenv": "^16.4.5",
         "elevenlabs": "^0.2.2",
         "express": "^4.19.2",
         "express-joi-validation": "^5.0.1",
         "joi": "^17.12.3",
-        "twilio": "^5.0.3"
+        "twilio": "^5.0.3",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",
         "@types/node": "^20.12.7",
+        "@types/uuid": "^9.0.8",
         "@typescript-eslint/eslint-plugin": "^7.6.0",
         "@typescript-eslint/parser": "^7.6.0",
         "eslint": "^8.57.0",
