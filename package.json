@@ -14,7 +14,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.19.2"
+        "express": "^4.19.2",
+        "express-joi-validation": "^5.0.1",
+        "joi": "^17.12.3",
+        "twilio": "^5.0.3"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",
