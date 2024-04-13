@@ -1,7 +1,8 @@
 import express from 'express';
 import { Request, Response } from 'express';
 import { createValidator } from 'express-joi-validation';
-
+import dotenv from 'dotenv';
+dotenv.config();
 export const app = express();
 app.use(express.json());
 export const validator = createValidator();
