@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ElevenLabsClient } from 'elevenlabs/Client';
 
 class ElevenServiceClass {
@@ -12,10 +13,7 @@ class ElevenServiceClass {
     }
 
     public async convertTextToSpeech(text: string): Promise<Buffer> {
-        const eleven = new ElevenLabsClient({
-            apiKey: process.env.VEAH_ELEVEN_API_KEY!,
-        });
-        const audio = await eleven.textToSpeech.convert(process.env.VEAH_ELEVEN_VOICE!, {
+        const audio = await this.eleven.textToSpeech.convert(this.voice, {
             text: text,
             voice_settings: {
                 style: 0.2,
