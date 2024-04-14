@@ -9,6 +9,7 @@ class ElevenServiceClass {
         this.eleven = new ElevenLabsClient({
             apiKey: apiKey,
         });
+        console.log('Eleven api key', apiKey);
     }
 
     public async convertTextToSpeech(text: string): Promise<Buffer> {

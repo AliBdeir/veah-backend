@@ -37,7 +37,7 @@ app.post('/call', validator.body(callRequestSchema), async (req: ValidatedReques
         });
         res.send('Call has been made');
     } catch (error) {
-        console.error('Failed to handle request:', error);
+        console.error('Failed to handle request:', (error as Error).message);
         res.status(500).send('Failed to convert text to speech');
     }
 });
