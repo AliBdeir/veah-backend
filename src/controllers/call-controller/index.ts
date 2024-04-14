@@ -52,7 +52,9 @@ app.post('/call', validator.body(callRequestSchema), async (req: ValidatedReques
             twiml: voiceResponse.toString(),
         });
 
-        res.send('Call initiated with VEAH interaction');
+        res.send({
+            sessionId,
+        });
     } catch (error) {
         console.error('Failed to initiate call:', (error as Error).message);
         res.status(500).send('Failed to process call setup');
@@ -66,6 +68,17 @@ app.post('/handle-response', async (req, res) => {
     const sessionData = await firebaseService.getChatSession(sessionId as string);
     if (!sessionData) {
         return res.status(404).send('Session not found');
+    }
+
+    const lowercase = (speechResult as string).toLowerCase();
+    if (lowercase.includes('our way') || lowercase.includes('sent') || lowercase.includes('coming')) {
+        await firebaseService.markSessionAsSent(sessionId as string);
+        // Create response and end the call
+        const response = new VoiceResponse();
+        response.say('Thank you.');
+        response.hangup(); // End the call after saying "Thank you"
+        res.type('text/xml');
+        return res.send(response.toString());
     }
 
     const responseText = await GeminiService.generate(

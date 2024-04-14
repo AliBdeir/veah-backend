@@ -44,6 +44,11 @@ class FirebaseService {
         const newIndex = messageCount.toString(); // Convert to string as Firebase keys are strings
         await set(child(messagesRef, newIndex), message);
     }
+
+    async markSessionAsSent(sessionId: string): Promise<void> {
+        const sessionRef = ref(getDatabase(firebaseApp), `chatSessions/${sessionId}`);
+        await set(child(sessionRef, 'sent'), true);
+    }
 }
 
 export default FirebaseService;
