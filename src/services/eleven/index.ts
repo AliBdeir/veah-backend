@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { ElevenLabsClient } from 'elevenlabs/Client';
 
 class ElevenServiceClass {
