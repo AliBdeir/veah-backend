@@ -14,6 +14,7 @@ const accountSid = process.env.VEAH_TWILIO_ACCOUNT_SID;
 const authToken = process.env.VEAH_TWILIO_AUTH_TOKEN;
 const phone = process.env.VEAH_TWILIO_PHONE_NUMBER;
 const client = twilio(accountSid, authToken);
+const self = process.env.VEAH_SELF!;
 const firebaseService = new FirebaseService(); // Initialized Firebase service
 
 app.post('/call', validator.body(callRequestSchema), async (req: ValidatedRequest<CallRequestSchema>, res) => {
@@ -41,7 +42,7 @@ app.post('/call', validator.body(callRequestSchema), async (req: ValidatedReques
         const gather = voiceResponse.gather({
             input: ['speech'],
             timeout: 5,
-            action: `https://8435-35-3-242-64.ngrok-free.app/handle-response?sessionId=${sessionId}`,
+            action: `${self}/handle-response?sessionId=${sessionId}`,
         });
         gather.say({ voice: 'alice' }, 'Any questions?');
 
@@ -91,7 +92,7 @@ app.post('/handle-response', async (req, res) => {
     response.gather({
         input: ['speech'],
         timeout: 5,
-        action: `https://8435-35-3-242-64.ngrok-free.app/handle-response?sessionId=${sessionId}`, // Recursive handling
+        action: `${self}/handle-response?sessionId=${sessionId}`, // Recursive handling
     });
 
     res.type('text/xml');
