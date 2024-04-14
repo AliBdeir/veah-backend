@@ -5,6 +5,9 @@ import { UserInput } from './types/types';
 export const callRequestSchema = Joi.object({
     predefinedInformation: Joi.object({
         address: Joi.string().required(),
+        name: Joi.string().required(),
+        age: Joi.number().required(),
+        sex: Joi.string().optional(),
         emergencyInformation: Joi.string().optional(),
         emergencyContacts: Joi.array()
             .items(

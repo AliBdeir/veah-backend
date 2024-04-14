@@ -1,10 +1,13 @@
 import { HealthInformation } from './health';
 
 export type UserInput = {
+    name: string;
+    age: number;
+    sex: 'male' | 'female';
     address: string;
     emergencyInformation: string;
     emergencyContacts: EmergencyContact[];
-    healthInformation: HealthInformation;
+    healthInformation?: HealthInformation;
 };
 
 export type EmergencyContact = {
