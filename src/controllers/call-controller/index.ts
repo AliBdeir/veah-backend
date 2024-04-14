@@ -20,7 +20,9 @@ app.post('/call', validator.body(callRequestSchema), async (req: ValidatedReques
     try {
         // ! Step 1: Generate the text
         const info = getPrompt(req.body.predefinedInformation);
+        console.log('Info prompt', info);
         const geminiResponse = await GeminiService.generate(info);
+        console.log('Gemini response', geminiResponse);
         // ! Step 2: Convert text to speech
         const audioBuffer: Buffer = await ElevenService.convertTextToSpeech(geminiResponse);
         // ! Step 3: Upload audio to Azure Blob Storage
@@ -37,7 +39,7 @@ app.post('/call', validator.body(callRequestSchema), async (req: ValidatedReques
         });
         res.send('Call has been made');
     } catch (error) {
-        console.error('Failed to handle request:', JSON.stringify(error));
+        console.error('Failed to handle request:', JSON.stringify(error), (error as Error).stack);
         res.status(500).send('Failed to convert text to speech');
     }
 });
