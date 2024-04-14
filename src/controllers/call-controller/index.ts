@@ -20,7 +20,7 @@ const firebaseService = new FirebaseService(); // Initialized Firebase service
 app.post('/call', validator.body(callRequestSchema), async (req: ValidatedRequest<CallRequestSchema>, res) => {
     try {
         const initialInfo = getPrompt(req.body.predefinedInformation);
-        const initialResponse = await GeminiService.generate(initialInfo);
+        const initialResponse = '...Please listen carefully... - ' + (await GeminiService.generate(initialInfo));
 
         const initialAudioBuffer = await ElevenService.convertTextToSpeech(initialResponse);
         const initialBlobName = `${uuid()}.mp3`;
@@ -44,7 +44,7 @@ app.post('/call', validator.body(callRequestSchema), async (req: ValidatedReques
             timeout: 5,
             action: `${self}/handle-response?sessionId=${sessionId}`,
         });
-        gather.say({ voice: 'alice' }, 'Any questions?');
+        gather.say({ voice: 'alice' }, 'Let me know if I can answer any questions.');
 
         await client.calls.create({
             from: phone!,
