@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ValidatedRequest } from 'express-joi-validation';
 import twilio from 'twilio';
 import { v4 as uuid } from 'uuid';
-import { app, validator } from '../../app';
+import { app, validator } from '../..';
 import BlobsService from '../../services/azure/blobs';
 import ElevenService from '../../services/eleven';
 import GeminiService from '../../services/gemini';
