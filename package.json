@@ -21,6 +21,7 @@
         "elevenlabs": "^0.2.2",
         "express": "^4.19.2",
         "express-joi-validation": "^5.0.1",
+        "firebase": "^10.11.0",
         "joi": "^17.12.3",
         "twilio": "^5.0.3",
         "uuid": "^9.0.1"
