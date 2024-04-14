@@ -37,14 +37,12 @@ class FirebaseService {
         return data ? { id: sessionId, ...data } : null;
     }
 
-    // Appends a message to an existing chat session
     async appendToChatSession(sessionId: string, message: Message): Promise<void> {
         const messagesRef = ref(getDatabase(firebaseApp), `chatSessions/${sessionId}/messages`);
-        const newMessageRef = push(messagesRef);
-        await set(newMessageRef, {
-            ...message,
-            timestamp: serverTimestamp(),
-        });
+        const snapshot = await get(messagesRef);
+        const messageCount = snapshot.exists() ? snapshot.size : 0; // Correct way to get number of children
+        const newIndex = messageCount.toString(); // Convert to string as Firebase keys are strings
+        await set(child(messagesRef, newIndex), message);
     }
 }
 
