@@ -20,7 +20,7 @@ export const callRequestSchema = Joi.object({
             )
             .optional(),
         healthInformation: Joi.object({
-            bloodType: Joi.string().empty().optional(),
+            bloodType: Joi.string().allow('', undefined, null).optional(),
             allergies: Joi.array().items(Joi.string()).optional(),
             medications: Joi.array().items(Joi.string()).optional(),
             conditions: Joi.array().items(Joi.string()).optional(),
