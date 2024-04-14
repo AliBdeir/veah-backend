@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
 import { ValidatedRequest } from 'express-joi-validation';
 import twilio from 'twilio';
+import VoiceResponse from 'twilio/lib/twiml/VoiceResponse';
 import { v4 as uuid } from 'uuid';
 import { app, validator } from '../..';
 import BlobsService from '../../services/azure/blobs';
@@ -8,7 +8,6 @@ import ElevenService from '../../services/eleven';
 import GeminiService from '../../services/gemini';
 import { CallRequestSchema, callRequestSchema } from './schemas';
 import { getPrompt } from './text-compiler';
-import VoiceResponse from 'twilio/lib/twiml/VoiceResponse';
 
 const accountSid = process.env.VEAH_TWILIO_ACCOUNT_SID;
 const authToken = process.env.VEAH_TWILIO_AUTH_TOKEN;
